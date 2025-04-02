@@ -1,14 +1,14 @@
 # Dockerfile for the client
-FROM node:20.14.0
-
+# Build stage
+FROM node:20.14.0 AS build
 WORKDIR /app
-
-COPY package.json .
-
-COPY . .
-
+COPY package*.json ./
 RUN npm install
+COPY . .
+RUN npm run build
 
-EXPOSE 3000
-
-CMD ["npm","run" ,"start"]
+# Production stage
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
