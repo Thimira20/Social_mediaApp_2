@@ -25,14 +25,14 @@ io.use(authSocket);
 io.on("connection", (socket) => socketServer(socket));
 
 mongoose.connect(
-  process.env.MONGO_URI,
+  "mongodb+srv://thimiranavodya20:1234@cluster0.rex08.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
     console.log("MongoDB connected");
   }
 );
 
-httpServer.listen(process.env.PORT || 4000, () => {
+httpServer.listen(4000 || 4000, () => {
   console.log("Listening");
 });
 

@@ -48,7 +48,7 @@ const register = async (req, res) => {
       password: hashedPassword,
     });
 
-    const token = jwt.sign(buildToken(user), process.env.TOKEN_KEY);
+    const token = jwt.sign(buildToken(user), "thimira");
 
     return res.json(getUserDict(token, user));
   } catch (err) {
@@ -78,7 +78,7 @@ const login = async (req, res) => {
       throw new Error("Email or password incorrect");
     }
 
-    const token = jwt.sign(buildToken(user), process.env.TOKEN_KEY);
+    const token = jwt.sign(buildToken(user), "thimira");
 
     return res.json(getUserDict(token, user));
   } catch (err) {

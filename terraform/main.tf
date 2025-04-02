@@ -100,7 +100,7 @@ resource "aws_security_group" "app_sg" {
 
 # Create an EC2 key pair
 resource "aws_key_pair" "app_key" {
-  key_name   = "app-key"
+  key_name   = "app-key-${timestamp()}"
   public_key = file(var.public_key_path)
 }
 
