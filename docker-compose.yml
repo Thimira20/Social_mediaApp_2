@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  backend:
+    image: thimira20/session-node-backend:latest
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env.production
+
+  frontend:
+    image: thimira20/session-react-frontend:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
